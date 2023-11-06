@@ -36,7 +36,8 @@ function Home({ navigation }) {
                     <Image source={require('../../images/clouds.jpg')} style={styles.image} />
                 </View>
                 <View style={styles.homeCon}>
-                    <Image style={styles.umbrella} source={require('../../images/umbrella.jpg')} />
+                    {/* <Image style={styles.umbrella} source={require('../../images/umbrella.jpg')} /> */}
+                    <Image style={styles.umbrella} source={require('../../images/design.png')} />
                     <Text style={styles.homeWeather}>
                         {weatherData && weatherData.weather[0].description}
                     </Text>

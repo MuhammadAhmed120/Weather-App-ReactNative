@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Image, Text, View, TouchableOpacity, ScrollView, RefreshControl, Pressable, SafeAreaView } from "react-native";
+import { Image, Text, View, TouchableOpacity, ScrollView, RefreshControl, SafeAreaView, TextInput } from "react-native";
 import styles from "./styles.js";
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import ShimmerPlaceholder from "react-native-shimmer-placeholder";
@@ -7,11 +7,13 @@ import LinearGradient from 'react-native-linear-gradient';
 
 function MainPage({ navigation }) {
     const [weatherData, setWeatherData] = useState(false);
+    const [cityName, setCityName] = useState("")
     const [refreshing, setRefreshing] = useState(false);
 
     const fetchWeatherData = () => {
+        console.log('cityName --->', cityName)
         fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=Karachi&units=metric&appid=<API-KEY>`
+            `https://api.openweathermap.org/data/2.5/weather?q=${cityName.length === 0 ? 'Karachi' : `${cityName}`}&units=metric&appid=37434a874990ad1a3f76deafb415a8b5`
         )
             .then(response => {
                 if (!response.ok) {
@@ -38,7 +40,7 @@ function MainPage({ navigation }) {
 
     useEffect(() => {
         fetchWeatherData();
-    }, []);
+    }, [cityName]);
 
     function padZero(number) {
         return number.toString().padStart(2, '0');
@@ -57,6 +59,8 @@ function MainPage({ navigation }) {
 
         return `${formattedHours}:${formattedMinutes} ${formattedHours >= 12 ? 'PM' : 'AM'}`;
     }
+
+    // console.log("navigation ----> ", Geolocation)
 
     return (
         <SafeAreaView
@@ -80,13 +84,22 @@ function MainPage({ navigation }) {
                 </View>
 
                 <View style={styles.homeCon}>
+                    <View style={styles.searchCon}>
+                        <Image source={require('../../images/search.png')} style={styles.searchImg} />
+                        <View style={styles.line}></View>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Search City"
+                            onChangeText={(text) => setCityName(text)}
+                        />
+                    </View>
                     <View style={styles.weatherDetCon}>
-                        <View style={{ alignItems: "center" }}>
+                        <View style={{ alignItems: "center", justifyContent: "center" }}>
                             <ShimmerPlaceholder
                                 LinearGradient={LinearGradient}
                                 width={150}
                                 height={50}
-                                style={{ borderRadius: 15 }}
+                                style={{ borderRadius: 15, }}
                                 visible={weatherData}
                             >
                                 <Text style={styles.weatherDesc}>{weatherData && weatherData.weather[0].description}</Text>
@@ -186,12 +199,12 @@ function MainPage({ navigation }) {
 
                             {/* SUNRISE */}
                             <View style={styles.card}>
+                                <Text style={styles.title}>Sunrise</Text>
                                 <ScrollView
                                     style={{ flex: 1 }}
                                     contentContainerStyle={{ flexGrow: 1 }}
                                     nestedScrollEnabled={true}
                                 >
-                                    <Text style={styles.title}>Sunrise</Text>
                                     <Text style={styles.content}>{convertTime(weatherData && weatherData.sys.sunrise)}</Text>
                                 </ScrollView>
                             </View>

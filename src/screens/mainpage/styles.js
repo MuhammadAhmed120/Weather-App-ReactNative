@@ -7,14 +7,43 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        // flex: 1.5,
+        flex: 1.5,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: "center",
         position: 'relative',
-        // backgroundColor: 'pink',
         width: "100%",
         height: 50
+    },
+
+    searchCon: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 5,
+        borderColor: '#9399a2',
+        borderWidth: 1,
+        width: "85%",
+        margin: "0 auto",
+        // padding: 5,
+    },
+
+    searchImg: {
+        width: 20,
+        height: 20,
+        marginHorizontal: 10,
+    },
+
+    line: {
+        width: 1,
+        height: '50%',
+        backgroundColor: '#9399a2',
+    },
+
+    input: {
+        flex: 1,
+        paddingLeft: 10,
+        fontFamily: "Poppins-Regular",
+        paddingVertical: 15
     },
 
     button: {
@@ -30,15 +59,12 @@ const styles = StyleSheet.create({
     homeCon: {
         alignItems: 'center',
         paddingTop: 40,
-        // backgroundColor: 'blue',
         gap: 50
     },
 
     weatherDetCon: {
-        // flex: 2,
         width: "100%",
         alignItems: 'center',
-        // backgroundColor: 'red',
         gap: 40
     },
 
@@ -47,8 +73,10 @@ const styles = StyleSheet.create({
         textTransform: 'capitalize',
         color: '#fff',
         fontSize: 35,
-        // backgroundColor: "yellow",
-        marginBottom: -20
+        marginBottom: -10,
+        paddingHorizontal: 6,
+        textAlign: 'center',
+        flexWrap: "wrap"
     },
 
     cityName: {
@@ -85,7 +113,6 @@ const styles = StyleSheet.create({
     },
 
     card: {
-        // flex: 1,
         backgroundColor: '#202b3b',
         width: '47%',
         height: 100,
