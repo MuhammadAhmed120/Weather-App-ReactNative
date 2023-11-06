@@ -13,7 +13,7 @@ function MainPage({ navigation }) {
     const fetchWeatherData = () => {
         console.log('cityName --->', cityName)
         fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${cityName.length === 0 ? 'Karachi' : `${cityName}`}&units=metric&appid=37434a874990ad1a3f76deafb415a8b5`
+            `https://api.openweathermap.org/data/2.5/weather?q=${cityName.length === 0 ? 'Karachi' : `${cityName}`}&units=metric&appid=<API-KEY>`
         )
             .then(response => {
                 if (!response.ok) {
